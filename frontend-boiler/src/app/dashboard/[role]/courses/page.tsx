@@ -28,7 +28,8 @@ interface CoursesPageProps {
   user?: User; 
 }
 
-const CoursesPage: React.FC<CoursesPageProps> = ({ user }) => {
+const CoursesPage = () => {
+// const CoursesPage: React.FC<CoursesPageProps> = ({ user }) => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [showForm, setShowForm] = useState<boolean>(false);
@@ -91,17 +92,18 @@ const CoursesPage: React.FC<CoursesPageProps> = ({ user }) => {
             name: storedName || "User",
             role: JSON.parse(storedRole) as 'admin' | 'teacher' | 'student'
           });
-        } else if (user) {
-          // Use the user from props if available
-          setCurrentUser(user);
-        }
+        } 
+        // else if (user) {
+        //   // Use the user from props if available
+        //   setCurrentUser(user);
+        // }
       }
       setLoading(false);
     } catch (error) {
       console.error("Failed to get user information", error);
       setLoading(false);
     }
-  }, [user]);
+  }, []);
 
   const fetchCourses = async () => {
     try {
